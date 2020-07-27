@@ -155,6 +155,12 @@ class SubBoard(object):
                 return True
         return False
 
+    def is_blank(self) -> bool:
+        for x in range(0,3):
+            for y in range(0,3):
+                if self._board[x][y].is_played():
+                    return False
+        return True
 
 
 

@@ -71,6 +71,14 @@ class MainBoard(object):
             raise BoardNotFinishedError
         return self._winner
 
+    def is_blank(self) -> bool:
+        for row in self._board:
+            for sub_board in row:
+                if not sub_board.is_blank():
+                    return False
+
+        return True
+
     def add_my_move(self, main_board_coords: MainBoardCoords, sub_board_coords: SubBoardCoords) -> 'MainBoard':
         """Adds your move to the specified sub-board
 
