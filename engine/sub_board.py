@@ -142,6 +142,23 @@ class SubBoard(object):
                     valid_coords.append(SubBoardCoords(row_index, col_index))
         return valid_coords
 
+    def is_dangerous(self) -> bool:
+        for sub_board_coords in self.get_playable_coords():
+            copy_board=deepcopy(self)
+            copy_board=copy_board.add_my_move(sub_board_coords)
+            if copy_board.is_finished:
+                return True 
+        for sub_board_coords in self.get_playable_coords():
+            copy_board=deepcopy(self)
+            copy_board=copy_board.add_opponent_move(sub_board_coords)
+            if copy_board.is_finished:
+                return True
+        return False
+
+
+
+
+
     # Private functions
     def _is_move_in_bounds(self, sub_board_coords: SubBoardCoords) -> bool:
         """Checks whether the given move is inside the boundaries of this board
