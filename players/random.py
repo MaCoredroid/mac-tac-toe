@@ -16,8 +16,8 @@ class Random(StdOutPlayer):
 
     def pick_next_main_board_coords(self) -> MainBoardCoords:
         if self.main_board.sub_board_next_player_must_play is None:
-            # if self.main_board.is_blank():
-            #     return MainBoardCoords(1,1)
+            if self.main_board.is_blank():
+                return MainBoardCoords(1,1)
             little_board= SubBoard(3)
             for x in range(0, 3):
                 for y in range(0,3):
@@ -45,8 +45,8 @@ class Random(StdOutPlayer):
 
     @staticmethod
     def pick_random_sub_board_coords(sub_board: SubBoard) -> SubBoardCoords:
-        # if sub_board.is_blank():
-        #     return SubBoardCoords(1,1)
+        if sub_board.is_blank():
+            return SubBoardCoords(1,1)
         for sub_board_coords in sub_board.get_playable_coords():
             copy_board=sub_board
             copy_board=copy_board.add_my_move(sub_board_coords)
